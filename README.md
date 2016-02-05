@@ -1,5 +1,8 @@
 # Rubkis-Cube-Solver
 
+![Rubiks Cube](https://www.rubiks.com/images/carousel/solve-it-rubiks-cube.png)
+
+
 ##What is this?
 - A C++ program to solve a rubiks cube
 - Written to teach myself OpenCV (the solver takes a Rubiks cube face image to start off) 
