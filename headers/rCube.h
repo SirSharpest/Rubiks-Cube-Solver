@@ -13,7 +13,7 @@
 
 
 
-class rcube {
+class rCube {
 
     Color cube[6][3][3];
 
@@ -21,14 +21,14 @@ class rcube {
 public:
 
     /*
-     * Constructor for a rcube
+     * Constructor for a rCube
      */
-    rcube();
+    rCube();
 
     /*
      * Copy constructor
      */
-    rcube(const rcube& toCpy);
+    rCube(const rCube & toCpy);
 
     /*
      * This function creates a completed cube

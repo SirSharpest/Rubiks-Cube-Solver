@@ -1,10 +1,10 @@
 #include <iostream>
-#include "../headers/rcube.h"
+#include "../headers/rCube.h"
 
 
 int main() {
 
-    rcube rcube1 = rcube();
+    rCube rcube1 = rCube();
 
     std::cout << "Completed code has been made" << std::endl;
 

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../headers/rcube.h"
+#include "../headers/rCube.h"
 
 #define debug
 
@@ -29,7 +29,7 @@
  */
 
 
-rcube::rcube() {
+rCube::rCube() {
 
 
     this->initCompletedCube();
@@ -39,7 +39,7 @@ rcube::rcube() {
     #endif
 }
 
-rcube::rcube(const rcube &toCpy) {
+rCube::rCube(const rCube &toCpy) {
 
     //For each face
     for(int i = 0; i < 6; i++){
@@ -61,7 +61,7 @@ rcube::rcube(const rcube &toCpy) {
 
 
 
-void rcube::initCompletedCube() {
+void rCube::initCompletedCube() {
 
     //for each face:
     for(int i = 0; i < 6; i++){
@@ -107,7 +107,7 @@ void rcube::initCompletedCube() {
 
 }
 
-void rcube::printCube() {
+void rCube::printCube() {
 
 
     //for each face
@@ -129,7 +129,7 @@ void rcube::printCube() {
 
 }
 
-void rcube::makeMove(moves direction) {
+void rCube::makeMove(moves direction) {
 
 
     switch (direction){
@@ -171,12 +171,12 @@ void rcube::makeMove(moves direction) {
 
 }
 
-void rcube::rotateHorizontalRows(int row, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
+void rCube::rotateHorizontalRows(int row, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
                                  int faceNew3, int faceOld4, int faceNew4) {
 
 
     //tmp cube to hold original values
-    rcube tmpCube(*this);
+    rCube tmpCube(*this);
 
     //do first swap
     cube[faceNew1][row][0] = tmpCube.cube[faceOld1][row][0];
@@ -204,10 +204,10 @@ void rcube::rotateHorizontalRows(int row, int faceOld1, int faceNew1, int faceOl
 }
 
 
-void rcube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
+void rCube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
 
     //tmp cube to hold original values
-    rcube tmpCube(*this);
+    rCube tmpCube(*this);
 
     //if we are moving in the clockwise direction
     if(isClockwise){
