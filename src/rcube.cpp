@@ -5,6 +5,15 @@
 #include <iostream>
 #include "../headers/rcube.h"
 
+#define debug
+
+/*
+ * When referencing the cube, the front face will be 0, the back will be 3
+ * The east side face will be 1, the west will be 4
+ * The top side face will be 2, the bottom 5
+ *
+ *
+ */
 
 
 /* Just for reference these are the proposed faces of completion:
@@ -24,8 +33,10 @@ rcube::rcube() {
 
 
     this->initCompletedCube();
-    this->printCube();
 
+    #ifdef debug
+        this->printCube();
+    #endif
 }
 
 void rcube::initCompletedCube() {
@@ -77,13 +88,17 @@ void rcube::printCube() {
     //for each face
     for(int i = 0; i < 6; i++ ){
 
+        //for each row
         for(int j = 0; j < 3; j++){
 
-            std::cout << cube[i][j][0] << std::endl;
-            std::cout << cube[i][j][1] << std::endl;
+            std::cout << cube[i][j][0];
+            std::cout << cube[i][j][1];
             std::cout << cube[i][j][2] << std::endl;
 
         }
+
+        //Break up the faces when printing
+        std::cout << "---" << std::endl;
 
 
 
@@ -100,6 +115,16 @@ void rcube::makeMove(moves direction) {
         case TOP_CLOCKWISE:
 
             //For this the top row will want to shuffle to the right
+
+                //Moving face 0(front), 1(east), 3(back) ,4(west)
+                //[0][0][x] -> [1][0][x]
+                //[1][0][x] -> [3][0][x]
+                //[3][0][x] -> [4][0][x]
+                //[4][0][x] -> [0][0][x]
+
+
+
+            //The top face will pivot on the center point
 
 
             break;
