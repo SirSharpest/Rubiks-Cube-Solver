@@ -31,9 +31,22 @@ public:
      */
     void initCompletedCube();
 
+    /*
+     *Prints out a cube in a semi-human readable format
+     */
     void printCube();
 
 
+    /*
+     * This function will perform a complete rotation,
+     * it takes 9 parameters, 1 to stat which row
+     * 4 dictate which face to move
+     * and 4 corresponding destinations
+     */
+    void rotateHorizontalRows(int row, int faceOld1, int faceNew1,
+                    int faceOld2, int faceNew2,
+                    int faceOld3, int faceNew3,
+                    int faceOld4, int faceNew4);
 
     /*
      * This function makes the move on the cube dependant on the direction given
