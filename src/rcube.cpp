@@ -39,6 +39,28 @@ rcube::rcube() {
     #endif
 }
 
+rcube::rcube(const rcube &toCpy) {
+
+    //For each face
+    for(int i = 0; i < 6; i++){
+
+        //for each row
+        for(int j = 0; j < 3; j++){
+
+            for(int k = 0; k < 3; k++){
+
+                this->cube[i][j][k] = toCpy.cube[i][j][k];
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
 void rcube::initCompletedCube() {
 
     //for each face:
@@ -66,7 +88,10 @@ void rcube::initCompletedCube() {
             case 5:
                 tmpColor = yellow;
                 break;
-        }
+            default:
+                std::cout << "Couldn't assign a color" << std::endl;
+                return;
+         }
 
         //for each row of that face:
         for(int j = 0; j < 3; j++){
@@ -100,10 +125,7 @@ void rcube::printCube() {
         //Break up the faces when printing
         std::cout << "---" << std::endl;
 
-
-
     }
-
 
 }
 
@@ -142,11 +164,62 @@ void rcube::makeMove(moves direction) {
             break;
         case LEFT_ANTICLOCKWISE:
             break;
+        default:
+            std::cout << "Error that is not a valid movement" << std::endl;
+            return;
         }
 
+}
+
+void rcube::rotateHorizontalRows(int row, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
+                                 int faceNew3, int faceOld4, int faceNew4) {
 
 
+    //tmp cube to hold original values
+    rcube tmpCube(*this);
+
+    //do first swap
+    cube[faceNew1][row][0] = tmpCube.cube[faceOld1][row][0];
+    cube[faceNew1][row][1] = tmpCube.cube[faceOld1][row][1];
+    cube[faceNew1][row][2] = tmpCube.cube[faceOld1][row][2];
 
 
+    //do second swap
+    cube[faceNew2][row][0] = tmpCube.cube[faceOld2][row][0];
+    cube[faceNew2][row][1] = tmpCube.cube[faceOld2][row][1];
+    cube[faceNew2][row][2] = tmpCube.cube[faceOld2][row][2];
+
+
+    //do third swap
+    cube[faceNew3][row][0] = tmpCube.cube[faceOld3][row][0];
+    cube[faceNew3][row][1] = tmpCube.cube[faceOld3][row][1];
+    cube[faceNew3][row][2] = tmpCube.cube[faceOld3][row][2];
+
+
+    //do fourth swap
+    cube[faceNew4][row][0] = tmpCube.cube[faceOld4][row][0];
+    cube[faceNew4][row][1] = tmpCube.cube[faceOld4][row][1];
+    cube[faceNew4][row][2] = tmpCube.cube[faceOld4][row][2];
+
+}
+
+
+void rcube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
+
+    //tmp cube to hold original values
+    rcube tmpCube(*this);
+
+    //if we are moving in the clockwise direction
+    if(isClockwise){
+
+        //TODO: Calculate new positions when movement is complete
+
+
+    }else{
+
+        //TODO: Calculate new positions when movement is complete
+
+
+    }
 
 }

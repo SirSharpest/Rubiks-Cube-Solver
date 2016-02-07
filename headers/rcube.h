@@ -12,6 +12,7 @@
 #include "moves.h"
 
 
+
 class rcube {
 
     Color cube[6][3][3];
@@ -23,6 +24,11 @@ public:
      * Constructor for a rcube
      */
     rcube();
+
+    /*
+     * Copy constructor
+     */
+    rcube(const rcube& toCpy);
 
     /*
      * This function creates a completed cube
@@ -48,10 +54,18 @@ public:
                     int faceOld3, int faceNew3,
                     int faceOld4, int faceNew4);
 
+
+    /*
+     * When a move occurs the Face perpendicular to the rotation will pivot on the center point
+     * in the clockwise direction of the move
+     */
+    void rotateOnPivotPoint(int faceToRotate, bool isClockwise);
+
     /*
      * This function makes the move on the cube dependant on the direction given
      */
     void makeMove(moves direction);
+
 
 
 private:
