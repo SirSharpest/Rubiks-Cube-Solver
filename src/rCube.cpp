@@ -164,6 +164,14 @@ void rCube::makeMove(moves direction) {
             break;
         case LEFT_ANTICLOCKWISE:
             break;
+        case FRONT_CLOCKWISE:
+            break;
+        case FRONT_ANTICLOCKWISE:
+            break;
+        case BACK_CLOCKWISE:
+                break;
+        case BACK_ANTICLOCKWISE:
+            break;
         default:
             std::cout << "Error that is not a valid movement" << std::endl;
             return;
