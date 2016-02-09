@@ -19,12 +19,12 @@
 /* Just for reference these are the proposed faces of completion:
  *
  *
- * 0 = white
- * 1 = red
- * 2 = green
- * 3 = blue
- * 4 = orange
- * 5 = yellow
+ * 0 = white = front face (ALWAYS All realitive to this state)
+ * 1 = red = top face
+ * 2 = green = east face
+ * 3 = blue = west face
+ * 4 = orange = bottom face
+ * 5 = yellow = back face
  *
  */
 
@@ -134,22 +134,13 @@ void rCube::makeMove(moves direction) {
 
     switch (direction){
 
+        //Rotate the white face top row to the east (right)
         case TOP_CLOCKWISE:
 
-            //For this the top row will want to shuffle to the right
-
-                //Moving face 0(front), 1(east), 3(back) ,4(west)
-                //[0][0][x] -> [1][0][x]
-                //[1][0][x] -> [3][0][x]
-                //[3][0][x] -> [4][0][x]
-                //[4][0][x] -> [0][0][x]
-
-
-
-            //The top face will pivot on the center point
 
 
             break;
+        //Rotate the white face
         case TOP_ANTICLOCKWISE:
             break;
         case RIGHT_CLOCKWISE:
@@ -222,6 +213,20 @@ void rCube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
 
         //TODO: Calculate new positions when movement is complete
 
+        //Top Row goes:
+            //0,0 -> 0,2
+            //0,1 -> 1,1
+            //0,2 -> 2,2
+
+        //Middle row goes:
+            //1,0 -> 0,1
+            //1,1 -> 1,1
+            //1,2 -> 2,1
+
+        //Bottom row goes to:
+            //2,0 -> 0,0
+            //2,1 -> 1,0
+            //2,2 -> 2,0
 
     }else{
 
