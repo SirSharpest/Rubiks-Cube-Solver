@@ -43,6 +43,13 @@ public:
     void printCube();
 
 
+    /**
+     * Evaluates the cube's state and decides if it is complete
+     */
+    bool isComplete();
+
+
+
     /*
      * This function will perform a complete rotation,
      * it takes 9 parameters, 1 to stat which row

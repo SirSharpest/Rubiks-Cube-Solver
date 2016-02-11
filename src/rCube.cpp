@@ -19,7 +19,7 @@
 /* Just for reference these are the proposed faces of completion:
  *
  *
- * 0 = white = front face (ALWAYS All realitive to this state)
+ * 0 = white = front face (ALWAYS All relative to this state)
  * 1 = red = top face
  * 2 = green = east face
  * 3 = blue = west face
@@ -170,6 +170,14 @@ void rCube::makeMove(moves direction) {
 
 }
 
+//TODO: implement
+bool rCube::isComplete() {
+
+    return false;
+
+}
+
+
 void rCube::rotateHorizontalRows(int row, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
                                  int faceNew3, int faceOld4, int faceNew4) {
 
@@ -215,23 +223,35 @@ void rCube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
 
         //Top Row goes:
             //0,0 -> 0,2
-            //0,1 -> 1,1
-            //0,2 -> 2,2
+            //1,0 -> 2,1
+            //2,0 -> 2,2
 
         //Middle row goes:
-            //1,0 -> 0,1
+            //0,1 -> 1,0
             //1,1 -> 1,1
-            //1,2 -> 2,1
+            //2,1 -> 1,2
 
-        //Bottom row goes to:
-            //2,0 -> 0,0
-            //2,1 -> 1,0
-            //2,2 -> 2,0
+        //Bottom row goes:
+            //0,2 -> 0,0
+            //1,2 -> 0,1
+            //2,2 -> 0,2
 
     }else{
 
-        //TODO: Calculate new positions when movement is complete
+        //Top Row goes:
+            //0,0 -> 0,2
+            //1,0 -> 0,1
+            //2,0 -> 0,0
 
+        //Middle row goes:
+            //0,1 ->
+            //1,1 ->
+            //2,1 ->
+
+        //Bottom Row goes to:
+            //0,2 ->
+            //1,2 ->
+            //2,2 ->
 
     }
 
