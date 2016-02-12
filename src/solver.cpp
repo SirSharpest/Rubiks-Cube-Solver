@@ -25,24 +25,37 @@ void solver::AStarIDS(rCube *cubeToSolve) {
 
 
 
-        rCube possibleMoves[12] = {currentState};
+        //Get all possible moves from this tate
+        rCube possibleMoves[12];
+        getCurrentStates(currentState, possibleMoves);
+
 
         //There are 12 states
         //Apply the 12 states to each of the possible moves
-        for (int i = 0; i < 12; ++i) {
+        for (int i = 0; i < 12; ++i) { possibleMoves[i].makeMove((moves) i); }
 
-            possibleMoves[i].makeMove((moves) i);
-
-        }
 
         //We now how an array of all possible board states from the current state.
 
 
 
+    }
+
+}
+
+void solver::getCurrentStates(rCube &currentState, rCube *states ) {
+
+    rCube possibleMoves[12] = {currentState};
+
+    //There are 12 states
+    //Apply the 12 states to each of the possible moves
+    for (int i = 0; i < 12; ++i) {
+
+        possibleMoves[i].makeMove((moves) i);
 
     }
 
-
+    states = possibleMoves;
 
 
 }

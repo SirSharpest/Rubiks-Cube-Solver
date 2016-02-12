@@ -36,6 +36,9 @@ rCube::rCube() {
 
     #ifdef debug
         this->printCube();
+
+    std::cout << isComplete();
+
     #endif
 }
 
@@ -170,11 +173,8 @@ void rCube::makeMove(moves direction) {
 
 }
 
-//TODO: implement
 bool rCube::isComplete() {
-
-    return false;
-
+    return evaluateCube();
 }
 
 
@@ -255,4 +255,27 @@ void rCube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
 
     }
 
+}
+
+bool rCube::evaluateCube(){
+
+    //Check each face
+    for(int i = 0; i < 6; i++){
+
+        //Check each row and column
+        for(int j = 0; j < 3; j++){
+
+            for(int k = 0; k < 3; k++){
+
+                if(cube[i][j][k] == (Color) i){
+                    continue;
+                }else{
+                    return false;
+                }
+            }
+
+        }
+
+    }
+    return true;
 }

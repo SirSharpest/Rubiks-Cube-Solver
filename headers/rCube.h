@@ -73,7 +73,7 @@ public:
      */
     void makeMove(moves direction);
 
-
+    bool evaluateCube();
 
 private:
 
