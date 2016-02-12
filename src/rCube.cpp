@@ -33,6 +33,8 @@ rCube::rCube() {
 
 
     this->initCompletedCube();
+    this->makeMove(TOP_CLOCKWISE);
+    this->makeMove(TOP_ANTICLOCKWISE);
 
     #ifdef debug
         this->printCube();
@@ -139,14 +141,16 @@ void rCube::makeMove(moves direction) {
 
         //Rotate the white face top row to the east (right)
         case TOP_CLOCKWISE:
-
-
-
+            rotateHorizontalRows(0, 0, 2, 2, 5, 5, 3, 3, 0);
+            rotateOnPivotPoint(1, true);
             break;
         //Rotate the white face
         case TOP_ANTICLOCKWISE:
+            rotateHorizontalRows(0, 0, 3, 3, 5, 5, 2, 2, 0);
+            rotateOnPivotPoint(1, false);
             break;
         case RIGHT_CLOCKWISE:
+           // rotateHorizontalRows()
             break;
         case RIGHT_ANTICLOCKWISE:
             break;
@@ -222,19 +226,34 @@ void rCube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
         //TODO: Calculate new positions when movement is complete
 
         //Top Row goes:
-            //0,0 -> 0,2
+            //0,0 -> 2,0
             //1,0 -> 2,1
             //2,0 -> 2,2
+
+        cube[faceToRotate][2][0] = tmpCube.cube[faceToRotate][0][0];
+        cube[faceToRotate][2][1] = tmpCube.cube[faceToRotate][1][0];
+        cube[faceToRotate][2][2] = tmpCube.cube[faceToRotate][2][0];
+
 
         //Middle row goes:
             //0,1 -> 1,0
             //1,1 -> 1,1
             //2,1 -> 1,2
 
+        cube[faceToRotate][1][0] = tmpCube.cube[faceToRotate][0][1];
+        cube[faceToRotate][1][1] = tmpCube.cube[faceToRotate][1][1];
+        cube[faceToRotate][1][2] = tmpCube.cube[faceToRotate][2][1];
+
+
         //Bottom row goes:
             //0,2 -> 0,0
             //1,2 -> 0,1
             //2,2 -> 0,2
+
+        cube[faceToRotate][0][0] = tmpCube.cube[faceToRotate][0][2];
+        cube[faceToRotate][0][1] = tmpCube.cube[faceToRotate][1][2];
+        cube[faceToRotate][0][2] = tmpCube.cube[faceToRotate][2][2];
+
 
     }else{
 
@@ -242,16 +261,28 @@ void rCube::rotateOnPivotPoint(int faceToRotate, bool isClockwise) {
             //0,0 -> 0,2
             //1,0 -> 0,1
             //2,0 -> 0,0
+        cube[faceToRotate][0][2] = tmpCube.cube[faceToRotate][0][0];
+        cube[faceToRotate][0][1] = tmpCube.cube[faceToRotate][1][0];
+        cube[faceToRotate][0][0] = tmpCube.cube[faceToRotate][2][0];
+
 
         //Middle row goes:
-            //0,1 ->
-            //1,1 ->
-            //2,1 ->
+            //0,1 -> 1,2
+            //1,1 -> 1,1
+            //2,1 -> 1,0
+        cube[faceToRotate][1][2] = tmpCube.cube[faceToRotate][0][1];
+        cube[faceToRotate][2][1] = tmpCube.cube[faceToRotate][1][1];
+        cube[faceToRotate][1][0] = tmpCube.cube[faceToRotate][2][1];
+
 
         //Bottom Row goes to:
-            //0,2 ->
-            //1,2 ->
-            //2,2 ->
+            //0,2 -> 2,2
+            //1,2 -> 2,1
+            //2,2 -> 2,0
+        cube[faceToRotate][2][0] = tmpCube.cube[faceToRotate][0][2];
+        cube[faceToRotate][2][1] = tmpCube.cube[faceToRotate][1][2];
+        cube[faceToRotate][2][0] = tmpCube.cube[faceToRotate][2][2];
+
 
     }
 

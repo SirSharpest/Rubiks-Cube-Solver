@@ -20,9 +20,14 @@ void solver::AStarIDS(rCube *cubeToSolve) {
 
     rCube currentState = *cubeToSolve;
 
+    //Set the current depth
+    int depth;
+
     //While the cube is not complete then looplooploop
     while(!currentState.isComplete()){
 
+        //Always start at 0 depth
+        depth = 0;
 
 
         //Get all possible moves from this tate
@@ -33,9 +38,8 @@ void solver::AStarIDS(rCube *cubeToSolve) {
         //There are 12 states
         //Apply the 12 states to each of the possible moves
         for (int i = 0; i < 12; ++i) { possibleMoves[i].makeMove((moves) i); }
-
-
         //We now how an array of all possible board states from the current state.
+
 
 
 
@@ -56,6 +60,14 @@ void solver::getCurrentStates(rCube &currentState, rCube *states ) {
     }
 
     states = possibleMoves;
+
+}
+
+int solver::MH3D(int x1, int y1, int z1,
+                 int x2, int y2, int z2) {
+
+
+    return (x1-x2)+(y1-y2)+(z1-z2);
 
 
 }

@@ -32,6 +32,15 @@ public:
      */
     void getCurrentStates(rCube &currentState, rCube *states);
 
+
+    /*
+     * Finds the 3d Manhattan distance between two points X and Y
+     * Using  |x1−x2|+|y1−y2|+|z1−z2| = what is returned
+     */
+    int MH3D(int x1, int y1, int z1,
+            int x2, int y2, int z2);
+
+
 private:
 
 
