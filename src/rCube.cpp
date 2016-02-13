@@ -150,25 +150,44 @@ void rCube::makeMove(moves direction) {
             rotateOnPivotPoint(1, false);
             break;
         case RIGHT_CLOCKWISE:
-           // rotateHorizontalRows()
+            rotateVerticalCols(2, 0, 1, 1, 5, 5, 4, 4, 0);
+            rotateOnPivotPoint(2, true);
             break;
         case RIGHT_ANTICLOCKWISE:
+            rotateVerticalCols(2, 0, 4, 4, 5, 5, 1, 1, 0);
+            rotateOnPivotPoint(2, false);
             break;
         case BOTTOM_CLOCKWISE:
+            rotateHorizontalRows(2, 0, 2, 2, 5, 5, 3, 3, 0);
+            rotateOnPivotPoint(4, true);
             break;
         case BOTTOM_ANTICLOCKWISE:
+            rotateHorizontalRows(2, 0, 3, 3, 5, 5, 2, 2, 0);
+            rotateOnPivotPoint(4, false);
             break;
         case LEFT_CLOCKWISE:
+            rotateVerticalCols(0, 0, 1, 1, 5, 5, 4, 4, 0);
+            rotateOnPivotPoint(3, true);
             break;
         case LEFT_ANTICLOCKWISE:
+            rotateVerticalCols(0, 0, 4, 4, 5, 5, 1, 1, 0);
+            rotateOnPivotPoint(3, false);
             break;
         case FRONT_CLOCKWISE:
+            rotateHorizontalRows(2, 1, 2, 2, 4, 4, 3, 3, 1);
+            rotateOnPivotPoint(0, true);
             break;
         case FRONT_ANTICLOCKWISE:
+            rotateHorizontalRows(2, 1, 3, 3, 4, 4, 2, 2, 1);
+            rotateOnPivotPoint(0, false);
             break;
         case BACK_CLOCKWISE:
-                break;
+            rotateHorizontalRows(0, 1, 2, 2, 4, 4, 3, 3, 1);
+            rotateOnPivotPoint(5, true);
+            break;
         case BACK_ANTICLOCKWISE:
+            rotateHorizontalRows(2, 1, 3, 3, 4, 4, 2, 2, 1);
+            rotateOnPivotPoint(5, false);
             break;
         default:
             std::cout << "Error that is not a valid movement" << std::endl;
@@ -309,4 +328,37 @@ bool rCube::evaluateCube(){
 
     }
     return true;
+}
+
+void rCube::rotateVerticalCols(int column, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
+                               int faceNew3, int faceOld4, int faceNew4) {
+
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    //do first swap
+    cube[faceNew1][0][column] = tmpCube.cube[faceOld1][0][column];
+    cube[faceNew1][1][column] = tmpCube.cube[faceOld1][1][column];
+    cube[faceNew1][2][column] = tmpCube.cube[faceOld1][2][column];
+
+
+    //do second swap
+    cube[faceNew2][0][column] = tmpCube.cube[faceOld2][0][column];
+    cube[faceNew2][1][column] = tmpCube.cube[faceOld2][1][column];
+    cube[faceNew2][2][column] = tmpCube.cube[faceOld2][2][column];
+
+
+    //do third swap
+    cube[faceNew3][0][column] = tmpCube.cube[faceOld3][0][column];
+    cube[faceNew3][1][column] = tmpCube.cube[faceOld3][1][column];
+    cube[faceNew3][2][column] = tmpCube.cube[faceOld3][2][column];
+
+
+    //do fourth swap
+    cube[faceNew4][0][column] = tmpCube.cube[faceOld4][0][column];
+    cube[faceNew4][1][column] = tmpCube.cube[faceOld4][1][column];
+    cube[faceNew4][2][column] = tmpCube.cube[faceOld4][2][column];
+
+
 }
