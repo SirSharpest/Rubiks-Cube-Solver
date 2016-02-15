@@ -33,11 +33,32 @@ rCube::rCube() {
 
 
     this->initCompletedCube();
-    this->makeMove(TOP_CLOCKWISE);
-    this->makeMove(TOP_ANTICLOCKWISE);
+
+
+
 
     #ifdef debug
-        this->printCube();
+
+        this->makeMove(TOP_CLOCKWISE);
+        this->makeMove(TOP_ANTICLOCKWISE);
+
+        this->makeMove(BOTTOM_ANTICLOCKWISE);
+        this->makeMove(BOTTOM_CLOCKWISE);
+
+        this->makeMove(RIGHT_ANTICLOCKWISE);
+        this->makeMove(RIGHT_CLOCKWISE);
+
+        this->makeMove(LEFT_ANTICLOCKWISE);
+        this->makeMove(LEFT_CLOCKWISE);
+
+        this->makeMove(BACK_ANTICLOCKWISE);
+        this->makeMove(BACK_CLOCKWISE);
+
+        this->makeMove(FRONT_ANTICLOCKWISE);
+        this->makeMove(FRONT_CLOCKWISE);
+
+
+    this->printCube();
 
     std::cout << isComplete();
 
@@ -186,7 +207,7 @@ void rCube::makeMove(moves direction) {
             rotateOnPivotPoint(5, true);
             break;
         case BACK_ANTICLOCKWISE:
-            rotateHorizontalRows(2, 1, 3, 3, 4, 4, 2, 2, 1);
+            rotateHorizontalRows(0, 1, 3, 3, 4, 4, 2, 2, 1);
             rotateOnPivotPoint(5, false);
             break;
         default:
