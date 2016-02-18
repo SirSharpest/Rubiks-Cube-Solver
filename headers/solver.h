@@ -50,14 +50,9 @@ public:
 private:
 
 
-
     std::vector<rCube> visited;
 
     std::priority_queue<rCube, std::vector<rCube>, rCube::compareF> frontier;
-
-
-
-
 
 };
 

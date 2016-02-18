@@ -29,15 +29,26 @@
  */
 
 
-rCube::rCube() {
+rCube::rCube():
+        f(1)
+{
 
 
     this->initCompletedCube();
 
+}
+
+rCube::rCube(int f) {
+
+    this->f = f;
 
 }
 
-rCube::rCube(const rCube &toCpy) {
+
+rCube::rCube(const rCube &toCpy, int f){
+
+
+    this->f = f;
 
     //For each face
     for(int i = 0; i < 6; i++){
@@ -380,6 +391,7 @@ int rCube::getF() {
 }
 
 void rCube::setF(int newF) {
+
     this->f = newF;
 }
 
@@ -408,3 +420,5 @@ bool rCube::compare(rCube cube) {
     return true;
 
 }
+
+

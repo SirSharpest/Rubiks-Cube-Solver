@@ -30,7 +30,13 @@ public:
     /*
      * Copy constructor
      */
-    rCube(const rCube & toCpy);
+    rCube(const rCube & toCpy, int f);
+
+    /*
+     * Constructor to set the f
+     */
+    rCube(int f);
+
 
     /*
      * This function creates a completed cube
@@ -95,7 +101,7 @@ public:
     {
         bool operator()(const rCube& lhs, const rCube& rhs) const
         {
-            return lhs.f < rhs.f;
+            return lhs.f > rhs.f;
         }
     };
 

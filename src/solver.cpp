@@ -44,27 +44,23 @@ void solver::AStarIDS(rCube *cubeToSolve, int depth) {
 
 void solver::getCurrentStates(rCube &currentState) {
 
-    rCube possibleMoves[12] = {currentState};
 
     //There are 12 states
     //Apply the 12 states to each of the possible moves
     for (int i = 0; i < 12; ++i) {
 
-        possibleMoves[i].makeMove((moves) i);
+        rCube tmpCube(currentState, 0);
+        tmpCube.makeMove((moves) i);
 
         for(int k= 0; k < visited.size(); k++){
-
-
-
             //If they are the same
-            if(visited.at(k).compare(possibleMoves[i])){
+            if(visited.at(k).compare(tmpCube)){
                 continue;
             }
         }
 
-        possibleMoves[i].setF(cubesOutOfPlace(possibleMoves[i]));
-
-        frontier.push(possibleMoves[i]);
+        tmpCube.setF(cubesOutOfPlace(tmpCube));
+        frontier.push(tmpCube);
 
     }
 

@@ -1,8 +1,13 @@
 #include <iostream>
 #include "../headers/rCube.h"
 #include "../headers/solver.h"
+#include <sys/resource.h>
+
 
 #define debug
+
+void fixRam();
+
 
 int main() {
 
@@ -10,12 +15,14 @@ int main() {
     solver solver1 = solver();
 
 #ifdef debug
+
+    //fixRam();
+
     rcube1.makeMove((moves)1);
     rcube1.makeMove((moves)1);
-    rcube1.makeMove((moves)4);
     rcube1.makeMove((moves)7);
-    rcube1.makeMove((moves)9);
-    rcube1.makeMove((moves)11);
+    rcube1.makeMove((moves)7);
+    rcube1.makeMove((moves)2);
 
     rcube1.printCube();
 
@@ -28,4 +35,26 @@ int main() {
 
 
     return 0;
+}
+
+
+void fixRam(){
+
+    const rlim_t kStackSize = 7000 * 1024 * 1024;   // min stack size = 7000 MB
+    struct rlimit rl;
+    int result;
+
+    result = getrlimit(RLIMIT_STACK, &rl);
+    if (result == 0)
+    {
+        if (rl.rlim_cur < kStackSize)
+        {
+            rl.rlim_cur = kStackSize;
+            result = setrlimit(RLIMIT_STACK, &rl);
+            if (result != 0)
+            {
+                fprintf(stderr, "setrlimit returned result = %d\n", result);
+            }
+        }
+    }
 }
