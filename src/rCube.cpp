@@ -374,3 +374,37 @@ void rCube::rotateVerticalCols(int column, int faceOld1, int faceNew1, int faceO
 
 
 }
+
+int rCube::getF() {
+    return this->f;
+}
+
+void rCube::setF(int newF) {
+    this->f = newF;
+}
+
+bool rCube::compare(rCube cube) {
+
+    for(int i = 0; i < 6; i++){
+
+        for( int j = 0; j < 3; j++){
+
+            for (int k = 0; k < 3; k++){
+
+                if(this->cube[i][j][k] == cube.cube[i][j][k]){
+                    continue;
+                }else{
+                    return false;
+                }
+
+
+            }
+
+        }
+
+    }
+
+
+    return true;
+
+}

@@ -15,10 +15,12 @@
 
 class rCube {
 
-    Color cube[6][3][3];
 
 
 public:
+
+    Color cube[6][3][3];
+
 
     /*
      * Constructor for a rCube
@@ -82,7 +84,29 @@ public:
 
     bool evaluateCube();
 
+    //gets the value at F
+    int getF();
+
+    //sets the value at F
+    void setF(int newF);
+
+
+    struct compareF
+    {
+        bool operator()(const rCube& lhs, const rCube& rhs) const
+        {
+            return lhs.f < rhs.f;
+        }
+    };
+
+    bool compare(rCube cube);
+
 private:
+
+    //This is the value to use as a comparator
+    int f;
+
+
 
 
 

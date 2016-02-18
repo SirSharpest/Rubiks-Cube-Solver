@@ -1,30 +1,29 @@
 #include <iostream>
 #include "../headers/rCube.h"
+#include "../headers/solver.h"
 
+#define debug
 
 int main() {
 
     rCube rcube1 = rCube();
+    solver solver1 = solver();
 
-
-    int move;
+#ifdef debug
+    rcube1.makeMove((moves)1);
+    rcube1.makeMove((moves)1);
+    rcube1.makeMove((moves)4);
+    rcube1.makeMove((moves)7);
+    rcube1.makeMove((moves)9);
+    rcube1.makeMove((moves)11);
 
     rcube1.printCube();
 
-    do{
-
-        std::cin >> move;
-
-
-        rcube1.makeMove((moves) move);
-        rcube1.printCube();
-
-
-    }while(!rcube1.isComplete());
-
+    solver1.AStarIDS(&rcube1, 0);
 
     std::cout << "Completed code has been made" << std::endl;
 
+#endif
 
 
 

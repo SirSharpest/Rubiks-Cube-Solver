@@ -8,6 +8,7 @@
 #include "rCube.h"
 #include <stack>
 #include <vector>
+#include <queue>
 
 
 class solver {
@@ -24,13 +25,13 @@ public:
      * This funciton uses A* IDS to find a solution
      * It takes a cube and edits it in place
      */
-    void AStarIDS(rCube * cubeToSolve);
+    void AStarIDS(rCube * cubeToSolve, int depth);
 
     /*
      * Gathers all possible states at current state
      * returns an array of states
      */
-    void getCurrentStates(rCube &currentState, rCube *states);
+    void getCurrentStates(rCube &currentState);
 
 
     /*
@@ -41,10 +42,19 @@ public:
             int x2, int y2, int z2);
 
 
+    /*
+     * Counts how many tiles are not in the correct place
+     */
+    int cubesOutOfPlace(rCube &cube);
+
 private:
 
 
-    std::stack <moves> frontier;
+
+    std::vector<rCube> visited;
+
+    std::priority_queue<rCube, std::vector<rCube>, rCube::compareF> frontier;
+
 
 
 
