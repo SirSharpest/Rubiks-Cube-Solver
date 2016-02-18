@@ -35,34 +35,6 @@ rCube::rCube() {
     this->initCompletedCube();
 
 
-
-
-    #ifdef debug
-
-        this->makeMove(TOP_CLOCKWISE);
-        this->makeMove(TOP_ANTICLOCKWISE);
-
-        this->makeMove(BOTTOM_ANTICLOCKWISE);
-        this->makeMove(BOTTOM_CLOCKWISE);
-
-        this->makeMove(RIGHT_ANTICLOCKWISE);
-        this->makeMove(RIGHT_CLOCKWISE);
-
-        this->makeMove(LEFT_ANTICLOCKWISE);
-        this->makeMove(LEFT_CLOCKWISE);
-
-        this->makeMove(BACK_ANTICLOCKWISE);
-        this->makeMove(BACK_CLOCKWISE);
-
-        this->makeMove(FRONT_ANTICLOCKWISE);
-        this->makeMove(FRONT_CLOCKWISE);
-
-
-    this->printCube();
-
-    std::cout << isComplete();
-
-    #endif
 }
 
 rCube::rCube(const rCube &toCpy) {
@@ -135,21 +107,40 @@ void rCube::initCompletedCube() {
 
 void rCube::printCube() {
 
+    std::cout << "  --- \t\t\t  ---" << std::endl;
+
 
     //for each face
-    for(int i = 0; i < 6; i++ ){
+    for(int i = 0; i < 3; i++ ){
 
         //for each row
         for(int j = 0; j < 3; j++){
 
+
+            std::cout << "| ";
+
             std::cout << cube[i][j][0];
             std::cout << cube[i][j][1];
-            std::cout << cube[i][j][2] << std::endl;
+            std::cout << cube[i][j][2];
+
+            std::cout << " | ";
+
+            std::cout << "\t\t";
+
+            std::cout << "| ";
+
+            std::cout << cube[i+3][j][0];
+            std::cout << cube[i+3][j][1];
+            std::cout << cube[i+3][j][2];
+
+            std::cout << " |"
+
+            << std::endl;
 
         }
 
         //Break up the faces when printing
-        std::cout << "---" << std::endl;
+        std::cout << "  --- \t\t\t  ---" << std::endl;
 
     }
 
