@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../headers/rCube.h"
+#include "../headers/rCube.hpp"
 
 #define debug
 

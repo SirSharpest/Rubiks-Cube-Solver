@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../headers/solver.h"
+#include "../headers/solver.hpp"
 
 
 solver::solver() {
@@ -52,7 +52,7 @@ void solver::getCurrentStates(rCube &currentState) {
         rCube tmpCube(currentState, 0);
         tmpCube.makeMove((moves) i);
 
-        for(int k= 0; k < visited.size(); k++){
+        for(u_int k= 0; k < visited.size(); k++){
             //If they are the same
             if(visited.at(k).compare(tmpCube)){
                 continue;

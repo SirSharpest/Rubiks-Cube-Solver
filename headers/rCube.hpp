@@ -8,8 +8,8 @@
 #ifndef RUBKIS_RCUBE_H
 #define RUBKIS_RCUBE_H
 
-#include "color.h"
-#include "moves.h"
+#include "color.hpp"
+#include "moves.hpp"
 
 
 

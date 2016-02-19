@@ -5,7 +5,7 @@
 #ifndef RUBKIS_SOLVER_H
 #define RUBKIS_SOLVER_H
 
-#include "rCube.h"
+#include "rCube.hpp"
 #include <stack>
 #include <vector>
 #include <queue>

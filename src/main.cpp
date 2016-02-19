@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../headers/rCube.h"
-#include "../headers/solver.h"
+#include "../headers/rCube.hpp"
+#include "../headers/solver.hpp"
 #include <sys/resource.h>
 
 
