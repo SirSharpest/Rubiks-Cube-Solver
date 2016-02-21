@@ -9,6 +9,8 @@
 #include <stack>
 #include <vector>
 #include <queue>
+#include <cstdlib>
+#include <ctime>
 
 
 class solver {
@@ -46,6 +48,12 @@ public:
      * Counts how many tiles are not in the correct place
      */
     int cubesOutOfPlace(rCube &cube);
+
+    /*
+     * Solver to try upto 18 random moves
+     */
+    void randomSolver(rCube &cube);
+
 
 private:
 

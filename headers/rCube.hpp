@@ -107,6 +107,8 @@ public:
 
     bool compare(rCube cube);
 
+    void setCustomCube();
+
 private:
 
     //This is the value to use as a comparator

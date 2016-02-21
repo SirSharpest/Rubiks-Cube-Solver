@@ -16,17 +16,27 @@ int main() {
 
 #ifdef debug
 
-    //fixRam();
+    fixRam();
 
-    rcube1.makeMove((moves)1);
-    rcube1.makeMove((moves)1);
-    rcube1.makeMove((moves)7);
-    rcube1.makeMove((moves)7);
-    rcube1.makeMove((moves)2);
+    std::srand(std::time(NULL));
+
+
+
+    int move;
+    for(int i = 0; i < 5; i++){
+        move = (rand() % 12 + 0);
+
+        rcube1.makeMove((moves) move );
+    }
+
 
     rcube1.printCube();
 
-    solver1.AStarIDS(&rcube1, 0);
+    //solver1.AStarIDS(&rcube1, 0);
+    solver1.randomSolver(rcube1);
+
+
+
 
     std::cout << "Completed code has been made" << std::endl;
 

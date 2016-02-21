@@ -422,3 +422,89 @@ bool rCube::compare(rCube cube) {
 }
 
 
+void rCube::setCustomCube() {
+
+
+    //face 1
+    cube[0][0][0] = orange;
+    cube[0][0][1] = orange;
+    cube[0][0][2] = green;
+
+    cube[0][1][0] = green;
+    cube[0][1][1] = white;
+    cube[0][1][2] = yellow;
+
+    cube[0][2][0] = green;
+    cube[0][2][1] = white;
+    cube[0][0][2] = orange;
+
+    //face 2
+    cube[1][0][0] = yellow;
+    cube[1][0][1] = white;
+    cube[1][0][2] = blue;
+
+    cube[1][1][0] = yellow;
+    cube[1][1][1] = red;
+    cube[1][1][2] = red;
+
+    cube[1][2][0] = yellow;
+    cube[1][2][1] = green;
+    cube[1][0][2] = red;
+
+    //face 3
+    cube[2][0][0] = yellow;
+    cube[2][0][1] = red;
+    cube[2][0][2] = blue;
+
+    cube[2][1][0] = yellow;
+    cube[2][1][1] = green;
+    cube[2][1][2] = yellow;
+
+    cube[2][2][0] = blue;
+    cube[2][2][1] = orange;
+    cube[2][0][2] = orange;
+
+    //face 4
+    cube[3][0][0] = orange;
+    cube[3][0][1] = red;
+    cube[3][0][2] = blue;
+
+    cube[3][1][0] = blue;
+    cube[3][1][1] = blue;
+    cube[3][1][2] = green;
+
+    cube[3][2][0] = yellow;
+    cube[3][2][1] = blue;
+    cube[3][0][2] = red;
+
+    //face 5
+    cube[4][0][0] = white;
+    cube[4][0][1] = white;
+    cube[4][0][2] = red;
+
+    cube[4][1][0] = blue;
+    cube[4][1][1] = orange;
+    cube[4][1][2] = orange;
+
+    cube[4][2][0] = white;
+    cube[4][2][1] = orange;
+    cube[4][0][2] = green;
+
+
+    //face 6
+    cube[5][0][0] = red;
+    cube[5][0][1] = green;
+    cube[5][0][2] = white;
+
+    cube[5][1][0] = red;
+    cube[5][1][1] = yellow;
+    cube[5][1][2] = white;
+
+    cube[5][2][0] = green;
+    cube[5][2][1] = blue;
+    cube[5][0][2] = white;
+
+
+
+
+}

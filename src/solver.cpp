@@ -14,6 +14,8 @@ void solver::AStarIDS(rCube *cubeToSolve, int depth) {
 
 
 
+    visited.push_back(*cubeToSolve);
+
     //The aim is to take a cube, create a list of all possible moves at this level
     //Use A* to evaluate those moves and then take the next best likely course of action.
 
@@ -55,6 +57,8 @@ void solver::getCurrentStates(rCube &currentState) {
         for(u_int k= 0; k < visited.size(); k++){
             //If they are the same
             if(visited.at(k).compare(tmpCube)){
+
+                std::cout << "it matches!!!";
                 continue;
             }
         }
@@ -99,4 +103,46 @@ int solver::cubesOutOfPlace(rCube &cube) {
 
 
     return numOOP;
+}
+
+void solver::randomSolver(rCube &cube) {
+
+    rCube tmpCube(cube);
+
+
+
+    int move;
+
+    for(int i = 0; i <= 18; i++){
+
+        if(tmpCube.isComplete()){
+            std::cout << "I did it! \n";
+            tmpCube.printCube();
+
+
+            int x;
+            std::cin >> x;
+
+            return;
+        }
+
+        move = (rand() % 12 + 0);
+
+        tmpCube.makeMove((moves) move );
+
+        std::cout << move << " ";
+
+
+    }
+    std::cout << std::endl;
+
+    if(!tmpCube.isComplete())
+        randomSolver(cube);
+    else{
+
+        int x;
+        std::cin >> x;
+
+    }
+
 }
