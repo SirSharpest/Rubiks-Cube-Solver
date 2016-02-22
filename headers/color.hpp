@@ -14,3 +14,4 @@
  */
 
 enum Color { white, red, green, blue, orange, yellow };
+

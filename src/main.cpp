@@ -16,19 +16,26 @@ int main() {
 
 #ifdef debug
 
+    //Do a little ram fix so that we can fill the thing!
     fixRam();
 
+
     std::srand(std::time(NULL));
-
-
-
     int move;
-    for(int i = 0; i < 5; i++){
+    int numMoves;
+    std::cin >> numMoves;
+
+    //Loop for as many moves as we request
+    for(int i = 0; i < numMoves ; i++){
         move = (rand() % 12 + 0);
+
+        std::cout << move << ":";
 
         rcube1.makeMove((moves) move );
     }
 
+    //Print out a blank line in between
+    std::cout << std::endl;
 
     rcube1.printCube();
 
@@ -36,8 +43,7 @@ int main() {
     solver1.randomSolver(rcube1);
 
 
-
-
+    //Print out if it was completed
     std::cout << "Completed code has been made" << std::endl;
 
 #endif

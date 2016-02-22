@@ -118,11 +118,6 @@ void solver::randomSolver(rCube &cube) {
         if(tmpCube.isComplete()){
             std::cout << "I did it! \n";
             tmpCube.printCube();
-
-
-            int x;
-            std::cin >> x;
-
             return;
         }
 
