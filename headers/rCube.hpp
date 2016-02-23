@@ -109,10 +109,59 @@ public:
 
     void setCustomCube();
 
+
+    /********************************************************************************************************
+     *
+     *
+     *
+     * REFACTORING:
+     *
+     * TODO:
+     *  12 manual swaps of possible moves
+     *  using cubboid class
+     *
+     *
+     * *******************************************************************************************************
+     */
+
+    /*
+     * Moves the cube's top row
+     */
+    void performTopMove(bool isClockwise);
+
+    /*
+     * Moves the cube's right most column
+     */
+    void performRightMove(bool isClockwise);
+
+    /*
+     * Moves the cube's bottom row
+     */
+    void performBottomMove(bool isClockwise);
+
+    /*
+     * Moves the cube's left most column
+     */
+    void performLeftMove(bool isClockwise);
+
+    /*
+     * Rotates the back face of the cube
+     */
+    void peformBackMove(bool isClockwise);
+
+    /*
+     * Rotates the front face of the cube
+     */
+    void performFrontMove(bool isClockwise);
+
+
+
 private:
 
     //This is the value to use as a comparator
     int f;
+
+
 
 
 

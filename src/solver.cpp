@@ -13,7 +13,6 @@ solver::solver() {
 void solver::AStarIDS(rCube *cubeToSolve, int depth) {
 
 
-
     visited.push_back(*cubeToSolve);
 
     //The aim is to take a cube, create a list of all possible moves at this level

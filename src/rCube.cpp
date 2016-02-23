@@ -118,7 +118,7 @@ void rCube::initCompletedCube() {
 
 void rCube::printCube() {
 
-    std::cout << "  --- \t\t\t  ---" << std::endl;
+    std::cout << "  --- \t\t\t   ---" << std::endl;
 
 
     //for each face
@@ -126,6 +126,7 @@ void rCube::printCube() {
 
         //for each row
         for(int j = 0; j < 3; j++){
+
 
 
             std::cout << "| ";
@@ -136,7 +137,10 @@ void rCube::printCube() {
 
             std::cout << " | ";
 
+
+            std::cout << i+1;
             std::cout << "\t\t";
+            std::cout << i+4;
 
             std::cout << "| ";
 
@@ -151,7 +155,7 @@ void rCube::printCube() {
         }
 
         //Break up the faces when printing
-        std::cout << "  --- \t\t\t  ---" << std::endl;
+        std::cout << "  --- \t\t\t   ---" << std::endl;
 
     }
 
@@ -508,3 +512,4 @@ void rCube::setCustomCube() {
 
 
 }
+
