@@ -1,4 +1,4 @@
-# Rubkis-Cube-Solver
+# Rubiks-Cube-Solver
 
 ![Rubiks Cube](https://www.rubiks.com/images/carousel/solve-it-rubiks-cube.png)
 
@@ -22,3 +22,5 @@
 ##Can I actually do a rubiks cube? 
 - No, I've never owned one. 
 
+##You spelt Rubiks wrong
+- Yeah, I just can't fix it as this link is on my CV currently
