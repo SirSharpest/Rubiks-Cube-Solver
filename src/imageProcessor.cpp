@@ -17,6 +17,10 @@ bool imageProcessor::init() {
         return false;
     }
 
+
+    //Apply a few filters on the image to smooth color bounds
+    //and to attempt to remove shine from excess light sources
+    cv::blur(src, dst, cv::Size(50,50));
     cv::bilateralFilter(src, dst, 50, 80, 80);
 
     //Create a window
