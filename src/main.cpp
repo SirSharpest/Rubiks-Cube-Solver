@@ -13,12 +13,20 @@ int main() {
     //Call start up function
     startUp();
 
+
+    //Create image processor
+    imageProcessor processor = imageProcessor();
+
+    //Init the processing of images
+    processor.init();
+
     //Create solver and cube objects
     rCube rcube1 = rCube();
     solver solver1 = solver();
-    imageProcessor processor = imageProcessor();
 
-    processor.init();
+    //Apply random solver to the cube
+    solver1.randomSolver(rcube1);
+
 
 
     return 0;
@@ -40,7 +48,7 @@ void startUp(){
 void fixRam(){
 
     //Cast to u_long to fix compiler error
-    const rlim_t kStackSize = (u_long) 500 * 1024 * 1024;   // min stack size = 500 MB
+    const rlim_t kStackSize = (u_long) 5000 * 1024 * 1024;   // min stack size = 500 MB
     struct rlimit rl;
     int result;
 

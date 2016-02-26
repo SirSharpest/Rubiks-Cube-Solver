@@ -57,26 +57,6 @@ public:
     bool isComplete();
 
 
-
-    /*
-     * This function will perform a complete rotation,
-     * it takes 9 parameters, 1 to stat which row
-     * 4 dictate which face to move
-     * and 4 corresponding destinations
-     */
-    void rotateHorizontalRows(int row, int faceOld1, int faceNew1,
-                    int faceOld2, int faceNew2,
-                    int faceOld3, int faceNew3,
-                    int faceOld4, int faceNew4);
-
-
-    void rotateVerticalCols(int column, int faceOld1, int faceNew1,
-                            int faceOld2, int faceNew2,
-                            int faceOld3, int faceNew3,
-                            int faceOld4, int faceNew4);
-
-
-
     /*
      * When a move occurs the Face perpendicular to the rotation will pivot on the center point
      * in the clockwise direction of the move
@@ -109,21 +89,6 @@ public:
 
     void setCustomCube();
 
-
-    /********************************************************************************************************
-     *
-     *
-     *
-     * REFACTORING:
-     *
-     * TODO:
-     *  12 manual swaps of possible moves
-     *  using cubboid class
-     *
-     *
-     * *******************************************************************************************************
-     */
-
     /*
      * Moves the cube's top row
      */
@@ -147,7 +112,7 @@ public:
     /*
      * Rotates the back face of the cube
      */
-    void peformBackMove(bool isClockwise);
+    void performBackMove(bool isClockwise);
 
     /*
      * Rotates the front face of the cube

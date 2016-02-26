@@ -53,15 +53,6 @@ void solver::getCurrentStates(rCube &currentState) {
         rCube tmpCube(currentState, 0);
         tmpCube.makeMove((moves) i);
 
-        for(u_int k= 0; k < visited.size(); k++){
-            //If they are the same
-            if(visited.at(k).compare(tmpCube)){
-
-                std::cout << "it matches!!!";
-                continue;
-            }
-        }
-
         tmpCube.setF(cubesOutOfPlace(tmpCube));
         frontier.push(tmpCube);
 
@@ -106,9 +97,7 @@ int solver::cubesOutOfPlace(rCube &cube) {
 
 void solver::randomSolver(rCube &cube) {
 
-    rCube tmpCube(cube);
-
-
+    rCube tmpCube = cube;
 
     int move;
 

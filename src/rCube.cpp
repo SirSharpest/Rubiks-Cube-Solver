@@ -124,29 +124,29 @@ void rCube::printCube() {
     //for each face
     for(int i = 0; i < 3; i++ ){
 
-        //for each row
+        //for each column
         for(int j = 0; j < 3; j++){
 
 
 
             std::cout << "| ";
 
-            std::cout << cube[i][j][0];
-            std::cout << cube[i][j][1];
-            std::cout << cube[i][j][2];
+            std::cout << cube[i][0][j];
+            std::cout << cube[i][1][j];
+            std::cout << cube[i][2][j];
 
             std::cout << " | ";
 
 
-            std::cout << i+1;
+            std::cout <<  i;
             std::cout << "\t\t";
-            std::cout << i+4;
+            std::cout << i+3;
 
             std::cout << "| ";
 
-            std::cout << cube[i+3][j][0];
-            std::cout << cube[i+3][j][1];
-            std::cout << cube[i+3][j][2];
+            std::cout << cube[i+3][0][j];
+            std::cout << cube[i+3][1][j];
+            std::cout << cube[i+3][2][j];
 
             std::cout << " |"
 
@@ -168,53 +168,41 @@ void rCube::makeMove(moves direction) {
 
         //Rotate the white face top row to the east (right)
         case TOP_CLOCKWISE:
-            rotateHorizontalRows(0, 0, 2, 2, 5, 5, 3, 3, 0);
-            rotateOnPivotPoint(1, true);
+            performTopMove(true);
             break;
         //Rotate the white face
         case TOP_ANTICLOCKWISE:
-            rotateHorizontalRows(0, 0, 3, 3, 5, 5, 2, 2, 0);
-            rotateOnPivotPoint(1, false);
+            performTopMove(false);
             break;
         case RIGHT_CLOCKWISE:
-            rotateVerticalCols(2, 0, 1, 1, 5, 5, 4, 4, 0);
-            rotateOnPivotPoint(2, true);
+            performRightMove(true);
             break;
         case RIGHT_ANTICLOCKWISE:
-            rotateVerticalCols(2, 0, 4, 4, 5, 5, 1, 1, 0);
-            rotateOnPivotPoint(2, false);
+            performRightMove(false);
             break;
         case BOTTOM_CLOCKWISE:
-            rotateHorizontalRows(2, 0, 2, 2, 5, 5, 3, 3, 0);
-            rotateOnPivotPoint(4, true);
+            performBottomMove(true);
             break;
         case BOTTOM_ANTICLOCKWISE:
-            rotateHorizontalRows(2, 0, 3, 3, 5, 5, 2, 2, 0);
-            rotateOnPivotPoint(4, false);
+            performBottomMove(false);
             break;
         case LEFT_CLOCKWISE:
-            rotateVerticalCols(0, 0, 1, 1, 5, 5, 4, 4, 0);
-            rotateOnPivotPoint(3, true);
+            performLeftMove(true);
             break;
         case LEFT_ANTICLOCKWISE:
-            rotateVerticalCols(0, 0, 4, 4, 5, 5, 1, 1, 0);
-            rotateOnPivotPoint(3, false);
+            performLeftMove(false);
             break;
         case FRONT_CLOCKWISE:
-            rotateHorizontalRows(2, 1, 2, 2, 4, 4, 3, 3, 1);
-            rotateOnPivotPoint(0, true);
+            performFrontMove(true);
             break;
         case FRONT_ANTICLOCKWISE:
-            rotateHorizontalRows(2, 1, 3, 3, 4, 4, 2, 2, 1);
-            rotateOnPivotPoint(0, false);
+            performFrontMove(false);
             break;
         case BACK_CLOCKWISE:
-            rotateHorizontalRows(0, 1, 2, 2, 4, 4, 3, 3, 1);
-            rotateOnPivotPoint(5, true);
+            performBackMove(true);
             break;
         case BACK_ANTICLOCKWISE:
-            rotateHorizontalRows(0, 1, 3, 3, 4, 4, 2, 2, 1);
-            rotateOnPivotPoint(5, false);
+            performBackMove(false);
             break;
         default:
             std::cout << "Error that is not a valid movement" << std::endl;
@@ -225,39 +213,6 @@ void rCube::makeMove(moves direction) {
 
 bool rCube::isComplete() {
     return evaluateCube();
-}
-
-
-void rCube::rotateHorizontalRows(int row, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
-                                 int faceNew3, int faceOld4, int faceNew4) {
-
-
-    //tmp cube to hold original values
-    rCube tmpCube(*this);
-
-    //do first swap
-    cube[faceNew1][row][0] = tmpCube.cube[faceOld1][row][0];
-    cube[faceNew1][row][1] = tmpCube.cube[faceOld1][row][1];
-    cube[faceNew1][row][2] = tmpCube.cube[faceOld1][row][2];
-
-
-    //do second swap
-    cube[faceNew2][row][0] = tmpCube.cube[faceOld2][row][0];
-    cube[faceNew2][row][1] = tmpCube.cube[faceOld2][row][1];
-    cube[faceNew2][row][2] = tmpCube.cube[faceOld2][row][2];
-
-
-    //do third swap
-    cube[faceNew3][row][0] = tmpCube.cube[faceOld3][row][0];
-    cube[faceNew3][row][1] = tmpCube.cube[faceOld3][row][1];
-    cube[faceNew3][row][2] = tmpCube.cube[faceOld3][row][2];
-
-
-    //do fourth swap
-    cube[faceNew4][row][0] = tmpCube.cube[faceOld4][row][0];
-    cube[faceNew4][row][1] = tmpCube.cube[faceOld4][row][1];
-    cube[faceNew4][row][2] = tmpCube.cube[faceOld4][row][2];
-
 }
 
 
@@ -357,38 +312,6 @@ bool rCube::evaluateCube(){
     return true;
 }
 
-void rCube::rotateVerticalCols(int column, int faceOld1, int faceNew1, int faceOld2, int faceNew2, int faceOld3,
-                               int faceNew3, int faceOld4, int faceNew4) {
-
-
-    //tmp cube to hold original values
-    rCube tmpCube(*this);
-
-    //do first swap
-    cube[faceNew1][0][column] = tmpCube.cube[faceOld1][0][column];
-    cube[faceNew1][1][column] = tmpCube.cube[faceOld1][1][column];
-    cube[faceNew1][2][column] = tmpCube.cube[faceOld1][2][column];
-
-
-    //do second swap
-    cube[faceNew2][0][column] = tmpCube.cube[faceOld2][0][column];
-    cube[faceNew2][1][column] = tmpCube.cube[faceOld2][1][column];
-    cube[faceNew2][2][column] = tmpCube.cube[faceOld2][2][column];
-
-
-    //do third swap
-    cube[faceNew3][0][column] = tmpCube.cube[faceOld3][0][column];
-    cube[faceNew3][1][column] = tmpCube.cube[faceOld3][1][column];
-    cube[faceNew3][2][column] = tmpCube.cube[faceOld3][2][column];
-
-
-    //do fourth swap
-    cube[faceNew4][0][column] = tmpCube.cube[faceOld4][0][column];
-    cube[faceNew4][1][column] = tmpCube.cube[faceOld4][1][column];
-    cube[faceNew4][2][column] = tmpCube.cube[faceOld4][2][column];
-
-
-}
 
 int rCube::getF() {
     return this->f;
@@ -513,3 +436,418 @@ void rCube::setCustomCube() {
 
 }
 
+
+/*
+ * Refactoring section
+ */
+void rCube::performTopMove(bool isClockwise) {
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    if(isClockwise){
+        //do first swap
+        //moves face 0 into the position of face 2
+        cube[2][0][0] = tmpCube.cube[0][0][0];
+        cube[2][1][0] = tmpCube.cube[0][1][0];
+        cube[2][2][0] = tmpCube.cube[0][2][0];
+
+
+        //do second swap
+        //moves face 2 into face 5
+        cube[5][0][0] = tmpCube.cube[2][0][0];
+        cube[5][1][0] = tmpCube.cube[2][1][0];
+        cube[5][2][0] = tmpCube.cube[2][2][0];
+
+
+        //do third swap
+        //moves face 5 into face 3
+        cube[3][0][0] = tmpCube.cube[5][0][0];
+        cube[3][1][0] = tmpCube.cube[5][1][0];
+        cube[3][2][0] = tmpCube.cube[5][2][0];
+
+
+        //do fourth swap
+        //moves face 3 into face 0
+        cube[0][0][0] = tmpCube.cube[3][0][0];
+        cube[0][1][0] = tmpCube.cube[3][1][0];
+        cube[0][2][0] = tmpCube.cube[3][2][0];
+    }else{
+
+        //do first swap
+        //moves face 0 into the position of face 3
+        cube[3][0][0] = tmpCube.cube[0][0][0];
+        cube[3][1][0] = tmpCube.cube[0][1][0];
+        cube[3][2][0] = tmpCube.cube[0][2][0];
+
+
+        //do second swap
+        //moves face 3 into face 5
+        cube[5][0][0] = tmpCube.cube[3][0][0];
+        cube[5][1][0] = tmpCube.cube[3][1][0];
+        cube[5][2][0] = tmpCube.cube[3][2][0];
+
+
+        //do third swap
+        //moves face 5 into face 2
+        cube[2][0][0] = tmpCube.cube[5][0][0];
+        cube[2][1][0] = tmpCube.cube[5][1][0];
+        cube[2][2][0] = tmpCube.cube[5][2][0];
+
+
+        //do fourth swap
+        //moves face 2 into face 0
+        cube[0][0][0] = tmpCube.cube[2][0][0];
+        cube[0][1][0] = tmpCube.cube[2][1][0];
+        cube[0][2][0] = tmpCube.cube[2][2][0];
+
+
+
+    }
+
+
+
+    //Rotate top face (1)
+    rotateOnPivotPoint(1, isClockwise);
+
+
+}
+
+void rCube::performRightMove(bool isClockwise) {
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    if (isClockwise) {
+        //do first swap
+        //moves face 0 into the position of face 1
+        cube[1][2][0] = tmpCube.cube[0][2][0];
+        cube[1][2][1] = tmpCube.cube[0][2][1];
+        cube[1][2][2] = tmpCube.cube[0][2][2];
+
+
+        //do second swap
+        //moves face 1 into face 5
+        cube[5][2][0] = tmpCube.cube[1][2][0];
+        cube[5][2][1] = tmpCube.cube[1][2][1];
+        cube[5][2][2] = tmpCube.cube[1][2][2];
+
+
+        //do third swap
+        //moves face 5 into face 4
+        cube[4][2][0] = tmpCube.cube[5][2][0];
+        cube[4][2][1] = tmpCube.cube[5][2][1];
+        cube[4][2][2] = tmpCube.cube[5][2][2];
+
+
+        //do fourth swap
+        //moves face 4 into face 0
+        cube[0][2][0] = tmpCube.cube[4][2][0];
+        cube[0][2][1] = tmpCube.cube[4][2][1];
+        cube[0][2][2] = tmpCube.cube[4][2][2];
+    } else {
+
+        //do first swap
+        //moves face 0 into the position of face 4
+        cube[4][2][0] = tmpCube.cube[0][2][0];
+        cube[4][2][0] = tmpCube.cube[0][2][1];
+        cube[4][2][0] = tmpCube.cube[0][2][2];
+
+
+        //do second swap
+        //moves face 4 into face 5
+        cube[5][2][0] = tmpCube.cube[4][2][0];
+        cube[5][2][1] = tmpCube.cube[4][2][1];
+        cube[5][2][2] = tmpCube.cube[4][2][2];
+
+
+        //do third swap
+        //moves face 5 into face 1
+        cube[1][2][0] = tmpCube.cube[5][2][0];
+        cube[1][2][1] = tmpCube.cube[5][2][1];
+        cube[1][2][2] = tmpCube.cube[5][2][2];
+
+
+        //do fourth swap
+        //moves face 1 into face 0
+        cube[0][2][0] = tmpCube.cube[1][2][0];
+        cube[0][2][1] = tmpCube.cube[1][2][1];
+        cube[0][2][2] = tmpCube.cube[1][2][2];
+
+
+    }
+
+    rotateOnPivotPoint(2, isClockwise);
+
+}
+
+void rCube::performBottomMove(bool isClockwise) {
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    if(isClockwise){
+        //do first swap
+        //moves face 0 into the position of face 2
+        cube[2][0][2] = tmpCube.cube[0][0][2];
+        cube[2][1][2] = tmpCube.cube[0][1][2];
+        cube[2][2][2] = tmpCube.cube[0][2][2];
+
+
+        //do second swap
+        //moves face 2 into face 5
+        cube[5][0][2] = tmpCube.cube[2][0][2];
+        cube[5][1][2] = tmpCube.cube[2][1][2];
+        cube[5][2][2] = tmpCube.cube[2][2][2];
+
+
+        //do third swap
+        //moves face 5 into face 3
+        cube[3][0][2] = tmpCube.cube[5][0][2];
+        cube[3][1][2] = tmpCube.cube[5][1][2];
+        cube[3][2][2] = tmpCube.cube[5][2][2];
+
+
+        //do fourth swap
+        //moves face 3 into face 0
+        cube[0][0][2] = tmpCube.cube[3][0][2];
+        cube[0][1][2] = tmpCube.cube[3][1][2];
+        cube[0][2][2] = tmpCube.cube[3][2][2];
+    }else{
+
+        //do first swap
+        //moves face 0 into the position of face 3
+        cube[3][0][2] = tmpCube.cube[0][0][2];
+        cube[3][1][2] = tmpCube.cube[0][1][2];
+        cube[3][2][2] = tmpCube.cube[0][2][2];
+
+
+        //do second swap
+        //moves face 3 into face 5
+        cube[5][0][2] = tmpCube.cube[3][0][2];
+        cube[5][1][2] = tmpCube.cube[3][1][2];
+        cube[5][2][2] = tmpCube.cube[3][2][2];
+
+
+        //do third swap
+        //moves face 5 into face 2
+        cube[2][0][2] = tmpCube.cube[5][0][2];
+        cube[2][1][2] = tmpCube.cube[5][1][2];
+        cube[2][2][2] = tmpCube.cube[5][2][2];
+
+
+        //do fourth swap
+        //moves face 2 into face 0
+        cube[0][0][2] = tmpCube.cube[2][0][2];
+        cube[0][1][2] = tmpCube.cube[2][1][2];
+        cube[0][2][2] = tmpCube.cube[2][2][2];
+
+    }
+
+    rotateOnPivotPoint(4, isClockwise);
+
+}
+
+void rCube::performLeftMove(bool isClockwise) {
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    if (isClockwise) {
+        //do first swap
+        //moves face 0 into the position of face 1
+        cube[1][0][0] = tmpCube.cube[0][0][0];
+        cube[1][0][1] = tmpCube.cube[0][0][1];
+        cube[1][0][2] = tmpCube.cube[0][0][2];
+
+
+        //do second swap
+        //moves face 1 into face 5
+        cube[5][0][0] = tmpCube.cube[1][0][0];
+        cube[5][0][1] = tmpCube.cube[1][0][1];
+        cube[5][0][2] = tmpCube.cube[1][0][2];
+
+
+        //do third swap
+        //moves face 5 into face 4
+        cube[4][0][0] = tmpCube.cube[5][0][0];
+        cube[4][0][1] = tmpCube.cube[5][0][1];
+        cube[4][0][2] = tmpCube.cube[5][0][2];
+
+
+        //do fourth swap
+        //moves face 4 into face 0
+        cube[0][0][0] = tmpCube.cube[4][0][0];
+        cube[0][0][1] = tmpCube.cube[4][0][1];
+        cube[0][0][2] = tmpCube.cube[4][0][2];
+    } else {
+
+        //do first swap
+        //moves face 0 into the position of face 4
+        cube[4][0][0] = tmpCube.cube[0][0][0];
+        cube[4][0][0] = tmpCube.cube[0][0][1];
+        cube[4][0][0] = tmpCube.cube[0][0][2];
+
+
+        //do second swap
+        //moves face 4 into face 5
+        cube[5][0][0] = tmpCube.cube[4][0][0];
+        cube[5][0][1] = tmpCube.cube[4][0][1];
+        cube[5][0][2] = tmpCube.cube[4][0][2];
+
+
+        //do third swap
+        //moves face 5 into face 1
+        cube[1][0][0] = tmpCube.cube[5][0][0];
+        cube[1][0][1] = tmpCube.cube[5][0][1];
+        cube[1][0][2] = tmpCube.cube[5][0][2];
+
+
+        //do fourth swap
+        //moves face 1 into face 0
+        cube[0][0][0] = tmpCube.cube[1][0][0];
+        cube[0][0][1] = tmpCube.cube[1][0][1];
+        cube[0][0][2] = tmpCube.cube[1][0][2];
+
+
+    }
+
+    rotateOnPivotPoint(3, isClockwise);
+
+}
+
+void rCube::performBackMove(bool isClockwise) {
+
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    if(isClockwise){
+        //do first swap
+        //moves face 1 into the position of face 2
+        cube[2][0][0] = tmpCube.cube[1][0][0];
+        cube[2][1][0] = tmpCube.cube[1][1][0];
+        cube[2][2][0] = tmpCube.cube[1][2][0];
+
+
+        //do second swap
+        //moves face 2 into face 4
+        cube[4][0][0] = tmpCube.cube[2][0][0];
+        cube[4][1][0] = tmpCube.cube[2][1][0];
+        cube[4][2][0] = tmpCube.cube[2][2][0];
+
+
+        //do third swap
+        //moves face 4 into face 3
+        cube[3][0][0] = tmpCube.cube[4][0][0];
+        cube[3][1][0] = tmpCube.cube[4][1][0];
+        cube[3][2][0] = tmpCube.cube[4][2][0];
+
+
+        //do fourth swap
+        //moves face 3 into face 1
+        cube[1][0][0] = tmpCube.cube[3][0][0];
+        cube[1][1][0] = tmpCube.cube[3][1][0];
+        cube[1][2][0] = tmpCube.cube[3][2][0];
+    }else{
+
+        //do first swap
+        //moves face 1 into the position of face 3
+        cube[3][0][0] = tmpCube.cube[1][0][0];
+        cube[3][1][0] = tmpCube.cube[1][1][0];
+        cube[3][2][0] = tmpCube.cube[1][2][0];
+
+
+        //do second swap
+        //moves face 3 into face 4
+        cube[4][0][0] = tmpCube.cube[3][0][0];
+        cube[4][1][0] = tmpCube.cube[3][1][0];
+        cube[4][2][0] = tmpCube.cube[3][2][0];
+
+
+        //do third swap
+        //moves face 4 into face 2
+        cube[2][0][0] = tmpCube.cube[4][0][0];
+        cube[2][1][0] = tmpCube.cube[4][1][0];
+        cube[2][2][0] = tmpCube.cube[4][2][0];
+
+
+        //do fourth swap
+        //moves face 2 into face 1
+        cube[1][0][0] = tmpCube.cube[2][0][0];
+        cube[1][1][0] = tmpCube.cube[2][1][0];
+        cube[1][2][0] = tmpCube.cube[2][2][0];
+
+    }
+
+    rotateOnPivotPoint(5, isClockwise);
+}
+
+void rCube::performFrontMove(bool isClockwise) {
+
+
+    //tmp cube to hold original values
+    rCube tmpCube(*this);
+
+    if(isClockwise){
+        //do first swap
+        //moves face 1 into the position of face 2
+        cube[2][0][2] = tmpCube.cube[1][0][2];
+        cube[2][1][2] = tmpCube.cube[1][1][2];
+        cube[2][2][2] = tmpCube.cube[1][2][2];
+
+
+        //do second swap
+        //moves face 2 into face 4
+        cube[4][0][2] = tmpCube.cube[2][0][2];
+        cube[4][1][2] = tmpCube.cube[2][1][2];
+        cube[4][2][2] = tmpCube.cube[2][2][2];
+
+
+        //do third swap
+        //moves face 4 into face 3
+        cube[3][0][2] = tmpCube.cube[4][0][2];
+        cube[3][1][2] = tmpCube.cube[4][1][2];
+        cube[3][2][2] = tmpCube.cube[4][2][2];
+
+
+        //do fourth swap
+        //moves face 3 into face 1
+        cube[1][0][2] = tmpCube.cube[3][0][2];
+        cube[1][1][2] = tmpCube.cube[3][1][2];
+        cube[1][2][2] = tmpCube.cube[3][2][2];
+    }else{
+
+        //do first swap
+        //moves face 1 into the position of face 3
+        cube[3][0][2] = tmpCube.cube[1][0][2];
+        cube[3][1][2] = tmpCube.cube[1][1][2];
+        cube[3][2][2] = tmpCube.cube[1][2][2];
+
+
+        //do second swap
+        //moves face 3 into face 4
+        cube[4][0][2] = tmpCube.cube[3][0][2];
+        cube[4][1][2] = tmpCube.cube[3][1][2];
+        cube[4][2][2] = tmpCube.cube[3][2][2];
+
+
+        //do third swap
+        //moves face 4 into face 2
+        cube[2][0][2] = tmpCube.cube[4][0][2];
+        cube[2][1][2] = tmpCube.cube[4][1][2];
+        cube[2][2][2] = tmpCube.cube[4][2][2];
+
+
+        //do fourth swap
+        //moves face 2 into face 1
+        cube[1][0][2] = tmpCube.cube[2][0][2];
+        cube[1][1][2] = tmpCube.cube[2][1][2];
+        cube[1][2][2] = tmpCube.cube[2][2][2];
+
+    }
+
+    rotateOnPivotPoint(0, isClockwise);
+
+
+}
