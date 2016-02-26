@@ -6,6 +6,7 @@
 #define RUBKIS_IMAGEPROCESSOR_HPP
 
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 #include <iostream>
 
 
@@ -24,7 +25,8 @@ public:
 
 private:
 
-    cv::Mat img;
+    cv::Mat src;
+    cv::Mat dst;
 
 };
 
