@@ -27,13 +27,13 @@ public:
      * This funciton uses A* IDS to find a solution
      * It takes a cube and edits it in place
      */
-    void AStarIDS(rCube * cubeToSolve, int depth);
+    void AStarIDS(rCube& cubeToSolve, int depth);
 
     /*
      * Gathers all possible states at current state
      * returns an array of states
      */
-    void getCurrentStates(rCube &currentState);
+    std::vector<rCube> getCurrentStates(rCube &currentState);
 
 
     /*
@@ -54,6 +54,8 @@ public:
      */
     void randomSolver(rCube &cube);
 
+
+    void expandTree();
 
 private:
 

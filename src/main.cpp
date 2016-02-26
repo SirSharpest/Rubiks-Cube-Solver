@@ -13,10 +13,8 @@ int main() {
     //Call start up function
     startUp();
 
-
     //Create image processor
     imageProcessor processor = imageProcessor();
-
     //Init the processing of images
     processor.init();
 
@@ -24,10 +22,11 @@ int main() {
     rCube rcube1 = rCube();
     solver solver1 = solver();
 
+    rcube1.printCube();
+    rcube1.makeMove((moves) 1);
+
     //Apply random solver to the cube
     solver1.randomSolver(rcube1);
-
-
 
     return 0;
 }
