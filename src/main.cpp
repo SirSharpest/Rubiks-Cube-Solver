@@ -23,7 +23,10 @@ int main() {
     solver solver1 = solver();
 
     rcube1.makeMove((moves) 1);
-    rcube1.makeMove((moves) 3);
+    rcube1.makeMove((moves) 5);
+    rcube1.makeMove((moves) 10);
+
+
 
     rcube1.printCube();
 

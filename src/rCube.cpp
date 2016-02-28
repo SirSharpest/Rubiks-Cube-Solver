@@ -685,8 +685,8 @@ void rCube::performLeftMove(bool isClockwise) {
         //do first swap
         //moves face 0 into the position of face 4
         cube[4][0][0] = tmpCube.cube[0][0][0];
-        cube[4][0][0] = tmpCube.cube[0][0][1];
-        cube[4][0][0] = tmpCube.cube[0][0][2];
+        cube[4][0][1] = tmpCube.cube[0][0][1];
+        cube[4][0][2] = tmpCube.cube[0][0][2];
 
 
         //do second swap
