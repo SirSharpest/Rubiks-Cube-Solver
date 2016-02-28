@@ -14,16 +14,19 @@ int main() {
     startUp();
 
     //Create image processor
-    imageProcessor processor = imageProcessor();
+    //imageProcessor processor = imageProcessor();
     //Init the processing of images
-    processor.init();
+    //processor.init();
 
     //Create solver and cube objects
     rCube rcube1 = rCube();
     solver solver1 = solver();
 
-    rcube1.printCube();
     rcube1.makeMove((moves) 1);
+    rcube1.makeMove((moves) 3);
+
+    rcube1.printCube();
+
 
     //Apply random solver to the cube
     solver1.randomSolver(rcube1);

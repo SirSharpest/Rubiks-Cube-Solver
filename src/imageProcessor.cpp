@@ -40,6 +40,9 @@ bool imageProcessor::init() {
     cv::destroyWindow("Rubik's cube");
     cv::destroyWindow("New Rubik's cube");
 
+
+    cv::imwrite("images/demo_filtered.png", dst);
+
     //Return true if it all went well and image was displayed
     return true;
 
