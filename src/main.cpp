@@ -14,9 +14,9 @@ int main() {
     startUp();
 
     //Create image processor
-    //imageProcessor processor = imageProcessor();
+    imageProcessor processor = imageProcessor();
     //Init the processing of images
-    //processor.init();
+    processor.init();
 
     //Create solver and cube objects
     rCube rcube1 = rCube();
