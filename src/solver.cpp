@@ -10,30 +10,6 @@ solver::solver() {
 
 }
 
-void solver::AStarIDS(rCube &cubeToSolve, int depth) {
-
-    /*
-
-    //we want to look at all elements at the current level and check if they are the answer
-    std::vector<rCube> states= getCurrentStates(cubeToSolve);
-
-    for(int i = 0; i < states.size(); i++ ){
-
-        std::vector<rCube> tmp = getCurrentStates(states.front());
-
-        for(int j = 0; j < tmp.size(); j++){
-
-            std::vector<rCube> tmp1 = getCurrentStates(tmp.front());
-
-
-
-        }
-
-    }
-
-     */
-
-}
 
 std::vector<rCube> solver::getCurrentStates(rCube &currentState) {
 
@@ -50,14 +26,6 @@ std::vector<rCube> solver::getCurrentStates(rCube &currentState) {
     return tmpCubes;
 }
 
-int solver::MH3D(int x1, int y1, int z1,
-                 int x2, int y2, int z2) {
-
-
-    return (x1-x2)+(y1-y2)+(z1-z2);
-
-
-}
 
 int solver::cubesOutOfPlace(rCube &cube) {
 
@@ -119,4 +87,28 @@ void solver::randomSolver(rCube &cube) {
     }
 
 }
+
+
+void solver::multiStageSolver(rCube &cube) {
+
+
+    //step 1 find white cross
+
+    //step 2 find white corners
+
+    //step 3 solve second layer
+
+    //step 4 find yellow cross
+
+    //step 5 position yellow edges
+
+    //step 6 yellow corners positioned
+
+    //step 7 orientate yellow corners
+
+
+
+}
+
+
 

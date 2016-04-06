@@ -23,25 +23,13 @@ public:
      */
     solver();
 
-    /*
-     * This funciton uses A* IDS to find a solution
-     * It takes a cube and edits it in place
-     */
-    void AStarIDS(rCube& cubeToSolve, int depth);
+
 
     /*
      * Gathers all possible states at current state
      * returns an array of states
      */
     std::vector<rCube> getCurrentStates(rCube &currentState);
-
-
-    /*
-     * Finds the 3d Manhattan distance between two points X and Y
-     * Using  |x1−x2|+|y1−y2|+|z1−z2| = what is returned
-     */
-    int MH3D(int x1, int y1, int z1,
-            int x2, int y2, int z2);
 
 
     /*
@@ -55,7 +43,7 @@ public:
     void randomSolver(rCube &cube);
 
 
-    void expandTree();
+    void multiStageSolver(rCube &cube);
 
 private:
 
