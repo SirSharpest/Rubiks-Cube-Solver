@@ -94,6 +94,8 @@ void solver::multiStageSolver(rCube &cube) {
 
     //step 1 find white cross
 
+
+
     //step 2 find white corners
 
     //step 3 solve second layer
@@ -109,6 +111,20 @@ void solver::multiStageSolver(rCube &cube) {
 
 
 }
+
+std::vector<moves> solver::whiteCross(rCube &cube) {
+
+    //Breadth first search if you please
+    //The move sequence that we find first will be used
+
+    std::vector<moves> movesToMake;
+
+
+
+    return movesToMake;
+}
+
+
 
 
 

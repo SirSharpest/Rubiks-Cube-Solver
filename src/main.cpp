@@ -1,12 +1,14 @@
 #include <iostream>
 #include "../headers/rCube.hpp"
 #include "../headers/solver.hpp"
-#include "../headers/imageProcessor.hpp"
 #include <sys/resource.h>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 
 void fixRam();
 void startUp();
+void renderCube(rCube &cube);
 
 int main() {
 
@@ -14,17 +16,17 @@ int main() {
     startUp();
 
     //Create image processor
-    imageProcessor processor = imageProcessor();
+    //imageProcessor processor = imageProcessor();
     //Init the processing of images
-    processor.init();
+    //processor.init();
 
     //Create solver and cube objects
     rCube rcube1 = rCube();
     solver solver1 = solver();
 
-    rcube1.makeMove((moves) 1);
-    rcube1.makeMove((moves) 5);
-    rcube1.makeMove((moves) 10);
+    //rcube1.makeMove((moves) 1);
+    //rcube1.makeMove((moves) 5);
+    //rcube1.makeMove((moves) 10);
 
 
 
@@ -33,6 +35,9 @@ int main() {
 
     //Apply random solver to the cube
     solver1.randomSolver(rcube1);
+
+
+    renderCube(rcube1);
 
     return 0;
 }
@@ -70,4 +75,89 @@ void fixRam(){
             }
         }
     }
+}
+
+
+void renderCube(rCube &cube){
+
+
+    sf::RectangleShape faces[6][9];
+
+    //set each face to have the same size and give them a location to be drawn
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < 9; j++){
+            faces[i][j].setSize(sf::Vector2f(10,10));
+            faces[i][j].setPosition(sf::Vector2f(10 + (i*90) + ((j+1)%3 *10),((j/3)+1)*10));
+            faces[i][j].setOutlineThickness(1);
+            faces[i][j].setOutlineColor(sf::Color::Magenta);
+
+            //May as well set the color while we are here
+
+
+            sf::Color bColor;
+
+
+            switch (cube.cube[i][1][1]){
+                case white:
+                    bColor = sf::Color::White;
+                    break;
+                case red:
+                    bColor = sf::Color::Red;
+                    break;
+                case green:
+                    bColor = sf::Color::Green;
+                    break;
+                case blue:
+                    bColor = sf::Color::Blue;
+                    break;
+                case yellow:
+                    bColor = sf::Color::Yellow;
+                    break;
+                case orange:
+                    //THERE IS NO ORANGE FOR NOW
+                    // TODO:: Get orange working
+                    bColor = sf::Color::Cyan;
+                    break;
+                default:
+                    bColor = sf::Color::Black;
+            }
+            faces[i][j].setFillColor(bColor);
+        }
+    }
+
+    // create the window
+    sf::RenderWindow window(sf::VideoMode(500, 100), "Cube");
+
+    // run the program as long as the window is open
+    while (window.isOpen())
+    {
+        // check all the window's events that were triggered since the last iteration of the loop
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        // clear the window with black color
+        window.clear(sf::Color::Black);
+
+        // draw everything here...
+        // window.draw(...);
+
+        for(int i = 0; i < 6; i++){
+
+            for(int j = 0; j < 9; j++){
+
+                window.draw(faces[i][j]);
+
+            }
+
+        }
+
+        // end the current frame
+        window.display();
+    }
+
 }

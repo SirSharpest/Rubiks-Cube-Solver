@@ -45,6 +45,8 @@ public:
 
     void multiStageSolver(rCube &cube);
 
+    std::vector<moves> whiteCross(rCube &cube);
+
 private:
 
 
