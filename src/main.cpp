@@ -89,7 +89,7 @@ void renderCube(rCube &cube){
             faces[i][j].setSize(sf::Vector2f(10,10));
             faces[i][j].setPosition(sf::Vector2f(10 + (i*90) + ((j+1)%3 *10),((j/3)+1)*10));
             faces[i][j].setOutlineThickness(1);
-            faces[i][j].setOutlineColor(sf::Color::Magenta);
+            faces[i][j].setOutlineColor(sf::Color::Black);
 
             //May as well set the color while we are here
 
@@ -116,7 +116,7 @@ void renderCube(rCube &cube){
                 case orange:
                     //THERE IS NO ORANGE FOR NOW
                     // TODO:: Get orange working
-                    bColor = sf::Color::Cyan;
+                    bColor = sf::Color(255, 156,0);
                     break;
                 default:
                     bColor = sf::Color::Black;
@@ -141,7 +141,7 @@ void renderCube(rCube &cube){
         }
 
         // clear the window with black color
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color(220,220,220));
 
         // draw everything here...
         // window.draw(...);
