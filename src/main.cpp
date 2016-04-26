@@ -36,7 +36,6 @@ int main() {
     //Apply random solver to the cube
     solver1.randomSolver(rcube1);
 
-
     renderCube(rcube1);
 
     return 0;
@@ -97,7 +96,7 @@ void renderCube(rCube &cube){
             sf::Color bColor;
 
 
-            switch (cube.cube[i][1][1]){
+            switch (cube.cube[i][(j+1)%3][(j/3)]){
                 case white:
                     bColor = sf::Color::White;
                     break;
