@@ -24,14 +24,7 @@ int main() {
     rCube rcube1 = rCube();
     solver solver1 = solver();
 
-    //rcube1.makeMove((moves) 1);
-    //rcube1.makeMove((moves) 5);
-    //rcube1.makeMove((moves) 10);
-
-
-
     rcube1.printCube();
-
 
     //Apply random solver to the cube
     solver1.randomSolver(rcube1);
@@ -81,16 +74,13 @@ void updateFaces(sf::RectangleShape faces[6][9], rCube &cube){
     //set each face to have the same size and give them a location to be drawn
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < 9; j++){
-            faces[i][j].setSize(sf::Vector2f(10,10));
-            faces[i][j].setPosition(sf::Vector2f(10 + (i*90) + ((j+1)%3 *10),((j/3)+1)*10));
+            faces[i][j].setSize(sf::Vector2f(40,40));
+            faces[i][j].setPosition(sf::Vector2f(40 + (i*150) + ((j+1)%3 *40),((j/3)+1)*40));
             faces[i][j].setOutlineThickness(1);
             faces[i][j].setOutlineColor(sf::Color::Black);
 
             //May as well set the color while we are here
-
-
             sf::Color bColor;
-
 
             switch (cube.cube[i][(j+1)%3][(j/3)]){
                 case white:
@@ -128,7 +118,7 @@ void renderCube(rCube &cube){
     //set each face to have the same size and give them a location to be drawn
     updateFaces(faces, cube);
     // create the window
-    sf::RenderWindow window(sf::VideoMode(500, 100), "Cube");
+    sf::RenderWindow window(sf::VideoMode(950, 200), "Cube");
 
     window.setFramerateLimit(20);
 
@@ -192,10 +182,10 @@ void renderCube(rCube &cube){
                         cube.makeMove((moves)9);
                         break;
 
-                    case sf::Keyboard::Subtract :
+                    case sf::Keyboard::Dash :
                         cube.makeMove((moves)10);
                         break;
-                    case sf::Keyboard::Add :
+                    case sf::Keyboard::Equal :
                         cube.makeMove((moves)11);
                         break;
                     default:
