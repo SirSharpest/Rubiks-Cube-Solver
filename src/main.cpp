@@ -76,11 +76,7 @@ void fixRam(){
     }
 }
 
-
-void renderCube(rCube &cube){
-
-
-    sf::RectangleShape faces[6][9];
+void updateFaces(sf::RectangleShape faces[6][9], rCube &cube){
 
     //set each face to have the same size and give them a location to be drawn
     for(int i = 0; i < 6; i++){
@@ -113,8 +109,6 @@ void renderCube(rCube &cube){
                     bColor = sf::Color::Yellow;
                     break;
                 case orange:
-                    //THERE IS NO ORANGE FOR NOW
-                    // TODO:: Get orange working
                     bColor = sf::Color(255, 156,0);
                     break;
                 default:
@@ -124,8 +118,19 @@ void renderCube(rCube &cube){
         }
     }
 
+}
+
+void renderCube(rCube &cube){
+
+
+    sf::RectangleShape faces[6][9];
+
+    //set each face to have the same size and give them a location to be drawn
+    updateFaces(faces, cube);
     // create the window
     sf::RenderWindow window(sf::VideoMode(500, 100), "Cube");
+
+    window.setFramerateLimit(20);
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -137,11 +142,76 @@ void renderCube(rCube &cube){
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+
+
+            /*
+             * Handle all of the key input
+             */
+            if(event.type == sf::Event::KeyPressed){
+
+                switch (event.key.code){
+
+                    case sf::Keyboard::Num1 :
+                        cube.makeMove((moves)0);
+                        break;
+
+                    case sf::Keyboard::Num2 :
+                        cube.makeMove((moves)1);
+                        break;
+
+                    case sf::Keyboard::Num3 :
+                        cube.makeMove((moves)2);
+                        break;
+
+                    case sf::Keyboard::Num4 :
+                        cube.makeMove((moves)3);
+                        break;
+
+                    case sf::Keyboard::Num5 :
+                        cube.makeMove((moves)4);
+                        break;
+
+                    case sf::Keyboard::Num6 :
+                        cube.makeMove((moves)5);
+                        break;
+
+                    case sf::Keyboard::Num7 :
+                        cube.makeMove((moves)6);
+                        break;
+
+                    case sf::Keyboard::Num8 :
+                        cube.makeMove((moves)7);
+                        break;
+
+                    case sf::Keyboard::Num9 :
+                        cube.makeMove((moves)8);
+                        break;
+
+
+                    case sf::Keyboard::Num0 :
+                        cube.makeMove((moves)9);
+                        break;
+
+                    case sf::Keyboard::Subtract :
+                        cube.makeMove((moves)10);
+                        break;
+                    case sf::Keyboard::Add :
+                        cube.makeMove((moves)11);
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+
+
+
         }
 
         // clear the window with black color
         window.clear(sf::Color(220,220,220));
-
+        updateFaces(faces, cube);
         // draw everything here...
         // window.draw(...);
 
