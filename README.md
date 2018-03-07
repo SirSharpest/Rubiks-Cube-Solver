@@ -2,7 +2,7 @@
 
 ![Rubiks Cube](https://www.rubiks.com/images/carousel/solve-it-rubiks-cube.png)
 
-##Project currently in need of a representation refactor!
+## Project currently in need of a representation refactor!
 In order to make this behave more like an actual cube the faces and cubids structure will
 require an overhaul. That is to say rather than having a [6][3][3] stucture of individual blocks, the program will
 require a broken down structure such as:
